@@ -3,6 +3,7 @@
 //creacion de la arreglo de nombres de los amigos
 let listadeaAmigos = [];
 let inputAmigo = document.getElementById("amigo");
+let li = document.getElementById("listaAmigos");
 //capturar el valor
 function caturarValor() {
   const entradaAmigo = inputAmigo.value;
@@ -22,11 +23,19 @@ function agregarAmigo() {
   let valorCapturado = caturarValor();
   if (valdiacionDeDato(valorCapturado)) {
     listadeaAmigos.push(valorCapturado);
-    limpiarLaEntrada();
+    limpiesa();
+    PintarListaAmigos();
   }
   console.log(listadeaAmigos);
 }
 //limpiar la entrada
-function limpiarLaEntrada() {
+function limpiesa() {
   inputAmigo.value = "";
+  li.innerHTML = "";
+}
+function PintarListaAmigos() {
+  for (let i = 0; i < listadeaAmigos.length; i++) {
+    const element = listadeaAmigos[i];
+    li.innerHTML += `<li>${element}<li>`;
+  }
 }
