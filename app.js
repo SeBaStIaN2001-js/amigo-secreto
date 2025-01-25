@@ -4,6 +4,7 @@
 let listadeaAmigos = [];
 let inputAmigo = document.getElementById("amigo");
 let li = document.getElementById("listaAmigos");
+let resutado = document.getElementById("resultado");
 //capturar el valor
 function caturarValor() {
   const entradaAmigo = inputAmigo.value;
@@ -32,10 +33,34 @@ function agregarAmigo() {
 function limpiesa() {
   inputAmigo.value = "";
   li.innerHTML = "";
+  resutado.innerHTML = "";
 }
 function PintarListaAmigos() {
   for (let i = 0; i < listadeaAmigos.length; i++) {
     const element = listadeaAmigos[i];
-    li.innerHTML += `<li>${element}<li>`;
+    pintar(element, li);
   }
+}
+function validarListaDeAmigos() {
+  if (listadeaAmigos.length == 0) {
+    alert("no hay amigos para sortear");
+    return false;
+  }
+  return true;
+}
+
+function generarNUmoeroRamodom() {
+  let numero = Math.floor(Math.random() * listadeaAmigos.length);
+  return numero;
+}
+function sortearAmigo() {
+  if (validarListaDeAmigos()) {
+    let dato = listadeaAmigos[generarNUmoeroRamodom()];
+    limpiesa();
+    pintar(`Tu amigo secreto es = ${dato}`, resutado);
+  }
+}
+
+function pintar(nombre, li) {
+  li.innerHTML += `<li>${nombre}<li>`;
 }
